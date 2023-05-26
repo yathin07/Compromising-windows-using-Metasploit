@@ -21,7 +21,7 @@ Investigate on the various categories of tools as follows:
 
 Open terminal and try execute some kali linux commands
 
-## PROGRAM:
+## EXECUTION STEPS AND ITS OUTPUT:
 
 
 
